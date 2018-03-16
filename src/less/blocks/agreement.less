@@ -1,0 +1,73 @@
+.agreement {
+    @media @mobile {
+        margin: 0 auto;
+        padding: 0;
+        input[type="checkbox"] {
+            display: none;
+        }
+        label {
+            display: block;
+            position: relative;
+            padding: 0;
+            padding-left: 30px;
+            padding-bottom: 10px;
+            font-family: @fontOS;
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            color: #8897a3;
+            transition: color 2s, border 0.3s;
+            a {
+                color: #8897a3;
+                text-decoration: underline;
+                transition: color 2s;
+                &:hover {
+                    color: darken(#8897a3, 20%);
+                    transition: color 2s;
+                }
+                &:focus {
+                    color: darken(#8897a3, 20%);
+                    transition: color 2s;
+                }
+                &:active {
+                    color: darken(#8897a3, 20%);
+                    transition: color 2s;
+                }
+            }
+            &::before {
+                display: block;
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 3px;
+                height: 21px;
+                width: 21px;
+                background-color: #ffffff;
+                border: 1px solid #d5c8d8;
+                border-radius: 0;
+            }
+            &::after {
+                display: none;
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 6px;
+                height: 11px;
+                width: 15px;
+                background-color: transparent;
+                border-left: 3px solid #9a5aa6;
+                border-bottom: 3px solid #9a5aa6;
+                border-radius: 0;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    @media @tablet {
+        margin-top: 20px;
+    }
+}
+
+.agreement input[type="checkbox"]:checked~label::after {
+    display: block;
+}
