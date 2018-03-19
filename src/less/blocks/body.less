@@ -1,13 +1,22 @@
 .body {
-	width: 100%;
-	min-height: 100%;
-	min-height: 100vh;
-	margin: 0 auto;
-	padding: 0;
-	background-color: @color;
-	background: @color;
-	&__content {
-		width: 100%;
-		max-width: @mailWidth;
-	}
+    width: 100%;
+    min-height: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    background-color: @mailBackgroundColor;
+    background: @mailBackgroundColor;
+    border: none;
+    border-collapse: collapse;
+    mso-table-lspace: 0;
+    mso-table-rspace: 0;
+    &__content {
+        width: @mailWidth;
+        max-width: @mailWidth;
+        background-color: @color;
+        background: @color;
+        @media @mobile {
+            width: 100% !important;
+        }
+    }
 }

@@ -14,8 +14,9 @@ var rimraf = require('rimraf');
 var inky = require('inky');
 var htmlbeautify = require('gulp-html-beautify');
 var rigger = require('gulp-rigger');
-//
-var changed = require('gulp-changed');
+var inlineCss = require('gulp-inline-css');
+var replace = require('gulp-replace');
+var fs = require('fs');
 
 var path = {
     build: {
@@ -32,6 +33,10 @@ var path = {
         html: 'src/**/*.html',
         css: 'src/less/**/*.*',
         img: 'src/image/*.*'
+    },
+    mail: {
+        html: 'mail/index.html',
+        img: 'mail/image/*.*'
     }
 };
 
@@ -105,5 +110,28 @@ gulp.task('serve', ['build'], function() {
 });
 
 gulp.task('clean', function(cb) {
-    rimraf(path.build.html, cb);
+    rimraf('build/', cb);
+});
+
+gulp.task('inline', function() {
+    return gulp.src('build/index.html')
+        .pipe(replace(/<link rel="stylesheet" href="css[/]style.css"[^>]*>/, function(s) {
+            var style = fs.readFileSync('build/css/style.css', 'utf8');
+            return '<style>\n' + style + '\n</style>';
+        }))
+        .pipe(inlineCss({
+            applyStyleTags: true,
+            applyLinkTags: true,
+            removeStyleTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: true,
+            removeHtmlSelectors: false,
+            applyWidthAttributes: true,
+            applyTableAttributes: true
+        }))
+        .pipe(htmlbeautify({
+            'indent_size': 4
+        }))
+        .pipe(rename('mail.html'))
+        .pipe(gulp.dest('build/'));
 });

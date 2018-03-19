@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
     <title>emailTemplate</title>
-    <!-- Важно! Надо убрать -->
+
     <link rel="stylesheet" href="css/style.css" />
     <!--[if (gte mso 9)|(IE)]>
     <style type="text/css">
@@ -17,14 +17,22 @@
 </head>
 
 <body>
-    <table class="body" width="100%" cellpadding="0" cellspacing="0">
+    <table class="body" width="100%" cellpadding="0" cellspacing="0" align="center">
         <tr>
-            <td class="body__content" align="center" valign="top">
+            <td align="center" valign="top">
+                <table class="body__content" cellpadding="0" cellspacing="0" align="center">
+                    <tr>
+                        <td align="center" valign="top">
 
-                    //= include/header.html
-                    //= include/main.html
-                    //= include/footer.html
-
+                            //= include/preheader.html
+                            //= include/header.html
+                            //= include/promo.html
+                            //= include/main.html
+                            //= include/footer.html
+                            
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
