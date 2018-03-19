@@ -1,10 +1,14 @@
 html {
     box-sizing: border-box;
+    min-height: 100%;
+    min-height: 100vh;
 }
 
 body {
-	background-color: darken(@BASE_COLOR, 10%);
-	font-family: @fontRbt;
+	min-height: 100%;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
 }
 
 *,
@@ -15,8 +19,24 @@ body {
 
 img {
     max-width: 100%;
+    height: auto;
 }
 
 a {
     text-decoration: none;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	max-width: 100%; 
+	table-layout: fixed;
+}
+
+tr,
+td,
+th {
+	margin: 0;
+	padding: 0;
 }

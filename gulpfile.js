@@ -13,6 +13,9 @@ var imagemin = require('gulp-imagemin');
 var rimraf = require('rimraf');
 var inky = require('inky');
 var htmlbeautify = require('gulp-html-beautify');
+var rigger = require('gulp-rigger');
+//
+var changed = require('gulp-changed');
 
 var path = {
     build: {
@@ -21,23 +24,27 @@ var path = {
         img: 'build/image'
     },
     src: {
-        html: 'src/*.html',
+        html: 'src/index.html',
         css: 'src/less/style.less',
         img: 'src/image/*.*'
     },
     watch: {
-        html: 'src/*.html',
+        html: 'src/**/*.html',
         css: 'src/less/**/*.*',
         img: 'src/image/*.*'
     }
 };
 
 gulp.task('buildHtml', function() {
-    gulp.src('src/*.html')
+    gulp.src(path.src.html)
+        .pipe(rigger())
         .pipe(inky())
-        .pipe(gulp.dest('build/'))
+        .pipe(htmlbeautify({
+            'indent_size': 4
+        }))
+        .pipe(gulp.dest(path.build.html))
         .pipe(server.stream());
-});
+})
 
 gulp.task('buildCss', function() {
     gulp.src(path.src.css)
@@ -77,20 +84,10 @@ gulp.task('buildImg', function() {
         .pipe(server.stream());
 });
 
-gulp.task('htmlbeautify', function() {
-  var options = {
-    'indent_size': 4
-  };
-  gulp.src('build/*.html')
-    .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('build'))
-});
-
 gulp.task('build', [
-    'buildCss',
     'buildHtml',
-    'buildImg',
-    'htmlbeautify'
+    'buildCss',
+    'buildImg'
 ]);
 
 gulp.task('serve', ['build'], function() {
@@ -104,7 +101,6 @@ gulp.task('serve', ['build'], function() {
 
     gulp.watch(path.watch.css, ['buildCss']);
     gulp.watch(path.watch.html, ['buildHtml']);
-    gulp.watch('build/index.html', ['htmlbeautify']);
     gulp.watch(path.watch.img, ['buildImg']);
 });
 
