@@ -135,3 +135,36 @@ gulp.task('inline', function() {
         .pipe(rename('mail.html'))
         .pipe(gulp.dest('build/'));
 });
+
+
+var button = {
+    input: '<button></button>',
+    output: '<'
+}
+
+var tags = {
+    button: {
+        input: ['<button>', '</button>'],
+        output: ['<table><tr><td>', '</td></tr></table>']
+    }
+}
+
+var replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
+
+gulp.task('transform', function() {
+    return gulp.src('build/index.html')
+        .pipe(replace(/<button>/, function(s) {
+            return tags.button.output[0];
+        }))
+        .pipe(replace(/<button>/, function(s) {
+            return tags.button.output[0];
+        }))
+        .pipe(replace(/<\/button>/, function(s) {
+            return tags.button.output[1];
+        }))
+        .pipe(rename('transformed.html'))
+        .pipe(gulp.dest('build/'));
+});
