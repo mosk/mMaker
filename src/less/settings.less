@@ -1,14 +1,24 @@
 // цвета
 @color: #dddddd;
+@fColor: #222222;
 @mailBackgroundColor: #ffffff;
 
 // шрифты
-@fFamily: 'Segoe UI', Arial, 'Helvetica Neue', Helvetica, sans-serif;
-@fontRbt: 'Roboto', Arial, sans-serif;
+@segoe: 'Segoe UI', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+@roboto: 'Roboto', Arial, sans-serif;
 @fontOS: 'Open Sans', Arial, sans-serif;
 @fontOSC: 'Open Sans Condensed', Arial, sans-serif;
 @fSize: 16px;
 
-// ширина письма
-@mailWidth: 600px;
+.font {
+	font-family: @segoe;
+	font-size: @fSize;
+	line-height: 1.3;
+	color: @fColor;
+}
 
+// ширина письма
+@mailWidth: 660px;
+@mailWidthMin: 320px;
+@mailPadding: 20px;
+@contentWidth: @mailWidth - @mailPadding * 2;
