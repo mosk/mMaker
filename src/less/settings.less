@@ -1,6 +1,5 @@
 // цвета
 @color: #dddddd;
-@fColor: #222222;
 @mailBackgroundColor: #ffffff;
 
 // шрифты
@@ -9,16 +8,18 @@
 @fontOS: 'Open Sans', Arial, sans-serif;
 @fontOSC: 'Open Sans Condensed', Arial, sans-serif;
 @fSize: 16px;
+@fColor: #222222;
 
 .font {
 	font-family: @segoe;
 	font-size: @fSize;
 	line-height: 1.3;
 	color: @fColor;
+	font-weight: 300;
 }
 
 // ширина письма
 @mailWidth: 660px;
 @mailWidthMin: 320px;
-@mailPadding: 20px;
+@mailPadding: 0px;
 @contentWidth: @mailWidth - @mailPadding * 2;

@@ -11,7 +11,7 @@ var minify = require('gulp-csso');
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 var rimraf = require('rimraf');
-var inky = require('inky');
+var minky = require('minky');
 var htmlbeautify = require('gulp-html-beautify');
 var rigger = require('gulp-rigger');
 var inlineCss = require('gulp-inline-css');
@@ -43,7 +43,7 @@ var path = {
 gulp.task('buildHtml', function() {
     gulp.src(path.src.html)
         .pipe(rigger())
-        .pipe(inky())
+        .pipe(minky())
         .pipe(htmlbeautify({
             'indent_size': 4
         }))
